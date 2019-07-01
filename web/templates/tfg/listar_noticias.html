@@ -1,0 +1,40 @@
+{% load static %}
+<html>
+<head>
+    <title>Fake news!</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap-theme.min.css'}">
+</head>
+<div class="col">
+    <div class="row">
+        <div class="col-3"></div>
+        <div class="col-6"></div>
+        <div class="col-3"></div>
+    </div>
+    <div class="row"></div>
+    <div class="row">
+        <div class="col-6">
+         {% block newslist %}
+            {% if news %}
+                <table>
+                    <thead>
+                     <tr><th> Noticias de verdad</th>
+                    <th> Noticias falsas</th>
+                    </tr>
+                    </thead>
+                <tbody>
+                    {% for n in news%}
+                        <td> {{ n.url }}</td>
+                        <td> {{ n.url }}</td>
+                    {% endfor%}
+                </tbody>
+                </table>
+            {%endif%}
+        {% endblock newslist %}
+        </div>
+        <div class="col-6"></div>
+    </div>
+</div>
+</html>
