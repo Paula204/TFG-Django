@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'web.apps.tfg',
     'debug_toolbar',
-    'bootstrap4'
+    'bootstrap4',
+    'jquery'
 ]
 
 MIDDLEWARE = [
@@ -79,14 +80,11 @@ WSGI_APPLICATION = 'web.wsgi.application'
 DATABASES = {
    'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'HOST': '127.0.0.1',
+        'HOST': 'localhost',
         'PORT': '3306',
-        'NAME': 'mysql',
+        'NAME': 'tfg_web',
         'USER': 'root',
-        'PASSWORD': 'admin',
-        'OPTIONS': {
-            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
-            },
+        'PASSWORD': 'admin'
     }
 }
 

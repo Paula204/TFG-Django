@@ -25,6 +25,26 @@ def CrearPeticion(request):
 
 
 def ListarNoticias(request):
+    noticiasMalas = []
+    noticiasBuenas = []
     noticias = News.objects.all()
-    return render(request, 'tfg/listar_noticias.html',{'news':noticias})
+    i = 0;
+    j = 0;
+    for noticia in noticias:
+        if noticia.esFi == False:
+            if(i < 5):
+                noticiasMalas.append(noticia)
+                i+=1
+        else:
+            if (j < 5):
+                noticiasBuenas.append(noticia)
+                j += 1
+    print(noticiasMalas)
+    print(noticiasBuenas)
+    return render(request, 'tfg/listar_noticias.html',
+                                                        {
+                                                            'news': noticias,
+                                                            'buenas':noticiasBuenas,
+                                                            'malas':noticiasMalas
+                                                        })
 

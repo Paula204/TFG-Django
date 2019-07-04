@@ -1,3 +1,28 @@
 body, html {
- background-image: url("b2.jpg");
+  background-image: linear-gradient(to right bottom, #815870, #8a6f87, #94859c, #a19cae, #b1b2bd, #b3b7c1, #b6bdc5, #b9c2c9, #a7bac2, #95b2b9, #82aaae, #72a29f);
+    margin: 0;
+    height: 100%;
+}
+
+.box{
+    display: flex;
+  justify-content: space-between;
+}
+
+
+.foo {
+   position: absolute;
+   top: 3em;
+   left: 0;
+   width: 30em;
+   height: 20em;
+}
+
+.footer {
+   position:fixed;
+   left:0px;
+   bottom:0px;
+   height:50px;
+   width:100%;
+   background:#9D738B;
 }

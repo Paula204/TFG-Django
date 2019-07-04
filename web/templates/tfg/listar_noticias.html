@@ -4,37 +4,102 @@
     <title>Fake news!</title>
     <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+    <!--<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.js"></script>-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/bootstrap-theme.min.css'}">
 </head>
+<body>
 <div class="col">
     <div class="row">
-        <div class="col-3"></div>
-        <div class="col-6"></div>
-        <div class="col-3"></div>
+        <div class="col-2"></div>
+        <div class="col-8" style="text-align:center;margin-top:48px">
+            <h2>Detector de noticias falsas</h2>
+        </div>
+        <div class="col-2"></div>
     </div>
-    <div class="row"></div>
+    <p></p>
+    <p></p>
+    <div class="row" style="height:15px"></div>
+
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-8">
+            <div class="row">
+                <div class="col-11">
+           <div class="form-group">
+            <input class="form-control shbutton" type="text">
+           </div>
+                    </div>
+                <div class="col-1">
+            <svg width="25" height="30" style="margin-left:-25px" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
+  <path fill="#555555" d="M1216 832q0-185-131.5-316.5t-316.5-131.5-316.5 131.5-131.5 316.5 131.5 316.5 316.5 131.5 316.5-131.5 131.5-316.5zm512 832q0 52-38 90t-90 38q-54 0-90-38l-343-342q-179 124-399 124-143 0-273.5-55.5t-225-150-150-225-55.5-273.5 55.5-273.5 150-225 225-150 273.5-55.5 273.5 55.5 225 150 150 225 55.5 273.5q0 220-124 399l343 343q37 37 37 90z"/>
+            </svg></div></div>
+        </div>
+         <div class="col-2"></div>
+    </div>
+    <p></p>
+    <div class="row" style="height:55px"></div>
+
     <div class="row">
         <div class="col-6">
          {% block newslist %}
-            {% if news %}
-                <table>
-                    <thead>
-                     <tr><th> Noticias de verdad</th>
-                    <th> Noticias falsas</th>
-                    </tr>
-                    </thead>
-                <tbody>
-                    {% for n in news%}
-                        <td> {{ n.url }}</td>
-                        <td> {{ n.url }}</td>
-                    {% endfor%}
-                </tbody>
-                </table>
+            {% if buenas %}
+                {% for n in buenas %}
+                    <ul id="NOTICIAS_BUENAS" class="list-group list-group-flush">
+                        <li class="list-group-item" style="text-align:center" >
+                           <a class="" href="{{n.url}}" target="_blank">{{n.url}}</a>
+                            <span class="badge badge-secondary badge-pill" style="float:right"> {{ n.fechaEntrada }}</span>
+                            </li>
+                    </ul>
+
+                {% endfor %}
             {%endif%}
-        {% endblock newslist %}
+         {% endblock newslist %}
         </div>
-        <div class="col-6"></div>
+        <div class="col-6">
+           {% block newsbadlist %}
+            {% if malas %}
+
+                {% for m in malas %}
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item" style="text-align:center">
+                           <a href="{{m.url}}" target="_blank">{{m.url}}</a>
+                            <span class="badge badge-secondary badge-pill" style="float:right"> {{ m.fechaEntrada }}</span>
+                            </li>
+                    </ul>
+                {% endfor %}
+            {%endif%}
+         {% endblock newsbadlist %}
+
+        </div>
+
     </div>
+     <script>
+                        $( "li" ).css( "background", "rgba(238,238,238,0.6)" );
+     </script>
+
+    <footer class="footer">
+        <div class="row">
+            <div class="col-2"></div>
+            <div class="col-8">
+                <div class="text-center py-3">Detector de noticias falsas</div>
+            </div>
+            <div class="col-2">
+                <div class="text-center py-2" >
+                    <small>Suriel Aido</small>
+                    <br>
+                     <small>Paula Balsera</small>
+                </div>
+            </div>
+        </div>
+
+
+    </footer>
 </div>
+
+<!-- Footer -->
+
+</body>
+<!-- Footer -->
 </html>
