@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from .forms import NewsForm
 from .models import  News
+from django.http import HttpResponseRedirect
 
 # Create your views here.
 def Home(request):
@@ -48,3 +49,15 @@ def ListarNoticias(request):
                                                             'malas':noticiasMalas
                                                         })
 
+
+def BuscarNoticia(request):
+    if request.method == 'POST':
+        news_form = NewsForm(request.POST)
+        if news_form.is_valid():
+            news_form.save()
+            # return redirect(ListarNoticias(request))
+        return HttpResponseRedirect(request.path_info)
+    else:
+        news_form = NewsForm()
+        
+    return ListarNoticias(request)

@@ -1,9 +1,61 @@
-body, html {
-  background-image: linear-gradient(to right bottom, #815870, #8a6f87, #94859c, #a19cae, #b1b2bd, #b3b7c1, #b6bdc5, #b9c2c9, #a7bac2, #95b2b9, #82aaae, #72a29f);
-    margin: 0;
-    height: 100%;
+
+@font-face {
+  font-family: '215000E';
+  src: local('215000E'), url('/static/fonts/215000E.ttf') format("truetype");
+}
+@font-face {
+  font-family: 'CFNelsonOldNewsPaper';
+  src: local('CFNelsonOldNewsPaper'), url('/static/fonts/CFNelsonOldNewsPaper.ttf') format("truetype");
+}
+@font-face {
+  font-family: 'Chenier-Regular';
+  src: local('Chenier-Regular'), url('/static/fonts/Chenier-Regular.ttf') format("truetype");
+}
+@font-face {
+  font-family: 'Collage annonymus';
+  src: local('Collage annonymus'), url('/static/fonts/Collage annonymus.ttf') format("truetype");
+}
+@font-face {
+  font-family: 'NightmarePills-DEMO';
+  src: local('NightmarePills-DEMO'),
+       url('/static/fonts/NightmarePills-DEMO.ttf') format("truetype");
+}
+@font-face {
+  font-family: 'Old printing press_FREE-version';
+  src: local('Old printing press_FREE-version'), url('/static/fonts/Old printing press_FREE-version.ttf') format("truetype");
+}
+@font-face {
+  font-family: 'OldNewspaperTypes';
+  src: local('OldNewspaperTypes'), url('/static/fonts/OldNewspaperTypes.ttf') format("truetype");
+}
+@font-face {
+  font-family: 'RadioNewsman';
+  src: local('RadioNewsman'), url('/static/fonts/RadioNewsman.ttf') format("truetype");
 }
 
+body, html {
+  /*background-image: linear-gradient(to right bottom, #815870, #8a6f87, #94859c, #a19cae, #b1b2bd, #b3b7c1, #b6bdc5, #b9c2c9, #a7bac2, #95b2b9, #82aaae, #72a29f);*/
+    /* background-image: linear-gradient(to right bottom, #e67ab8, #d78fcc, #c8a2d8, #bfb3dc, #bfc0d9, #bbc4da, #b8c7db, #b6cada, #9cc9dd, #7dc9da, #5bc8d0, #3bc7be);*/
+    /* background-image: linear-gradient(to right bottom, #878184, #938f92, #a09da1, #adabaf, #bababd, #bbbdc3, #bbc1c9, #bac5ce, #a8bfca, #94b9c3, #81b4b9, #70aeaa);
+
+ background-image: linear-gradient(to right top, #8fe653, #48ea9c, #19e8d2, #62e0ee, #a1d6ee, #acd0e4, #b4cad9, #bac5ce, #a8bfca, #94b9c3, #81b4b9, #70aeaa);     height: 100%;
+  background-image: radial-gradient(circle, #666666, #747474, #818181, #909090, #9e9e9e, #ababab, #b8b8b8, #c5c5c5, #d3d3d3, #e2e2e2, #f0f0f0, #ffffff);
+ */
+  background-image: radial-gradient(circle, #33867e, #5a9a93, #7dafa9, #9fc4bf, #c1d9d6, #cee2df, #dbeae8, #e8f3f1, #e4f1ee, #dfeeec, #dbece9, #d6e9e7);
+ }
+
+.title{
+    font-family: '215000E';
+    background-color: #00534b;
+    font-size: 40px;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+}
+
+.rr{
+    border-radius: 22px;
+}
 .box{
     display: flex;
   justify-content: space-between;
@@ -24,5 +76,12 @@ body, html {
    bottom:0px;
    height:50px;
    width:100%;
-   background:#9D738B;
+   background:#83a2ab;
+}
+
+.centerrrrrr{
+     display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 40%;
 }
