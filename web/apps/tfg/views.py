@@ -29,35 +29,46 @@ def ListarNoticias(request):
     noticiasMalas = []
     noticiasBuenas = []
     noticias = News.objects.all()
-    i = 0;
-    j = 0;
-    for noticia in noticias:
-        if noticia.esFi == False:
-            if(i < 5):
-                noticiasMalas.append(noticia)
-                i+=1
-        else:
-            if (j < 5):
-                noticiasBuenas.append(noticia)
-                j += 1
-    print(noticiasMalas)
-    print(noticiasBuenas)
-    return render(request, 'tfg/listar_noticias.html',
-                                                        {
-                                                            'news': noticias,
-                                                            'buenas':noticiasBuenas,
-                                                            'malas':noticiasMalas
-                                                        })
+    news_form = NewsForm()
+    if request.method == 'GET':
+        i = 0;
+        j = 0;
+        for noticia in noticias:
+            if noticia.esFi == False:
+                if(i < 5):
+                    noticiasMalas.append(noticia)
+                    i+=1
+            else:
+                if (j < 5):
+                    noticiasBuenas.append(noticia)
+                    j += 1
+        print(noticiasMalas)
+        print(noticiasBuenas)
 
-
-def BuscarNoticia(request):
-    if request.method == 'POST':
+    elif request.method == 'POST':
         news_form = NewsForm(request.POST)
         if news_form.is_valid():
             news_form.save()
-            # return redirect(ListarNoticias(request))
-        return HttpResponseRedirect(request.path_info)
+            return redirect('/news/listar_noticias/')
+
+    return render(request, 'tfg/listar_noticias.html',
+                  {
+                      'news': noticias,
+                      'buenas': noticiasBuenas,
+                      'malas': noticiasMalas,
+                      'news_form': news_form
+                  })
+
+
+
+def BuscarNoticia(request):
+    if request.method == "POST":
+        news_form = NewsForm(request.POST)
+        if news_form.is_valid():
+            news_form.save()
+            return redirect('listar_noticias')
+        # return HttpResponseRedirect(request.path_info)
     else:
         news_form = NewsForm()
         
-    return ListarNoticias(request)
+    return render(request, 'tfg/listar_noticias.html', {'news_form': news_form})

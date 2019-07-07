@@ -85,3 +85,9 @@ body, html {
   margin-right: auto;
   width: 40%;
 }
+
+
+.modal-content {
+  max-height: 300px;
+  overflow-y: auto;
+}
