@@ -10,6 +10,11 @@
     <link rel="stylesheet" href="{% static 'css/bootstrap-theme.min.css'}">
     <link href="https://fonts.googleapis.com/css?family=Amatic+SC|Bevan|Fredericka+the+Great|Montserrat|Pacifico|Paytone+One|Raleway|Rubik+Mono+One|Six+Caps|Source+Code+Pro|Source+Sans+Pro|Special+Elite&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <style>
     @font-face {
         font-family: '215000E';
@@ -44,7 +49,7 @@
                           </div>
                       <div class="col-2">
                 <button type="submit" class="btn btn-default">
-                   <span class="fa fa-search"></span> Search
+                   <span class="fa fa-search"></span> Buscar
                 </button>
                       </div>
                 </div>
@@ -73,24 +78,25 @@
                     <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
                     <label class="form-check-label" for="inlineRadio2">Doc2Vec</label>
                     </div>
-                </div>
-                <div class="col-3">
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalButton">
-  Klick mich
+
+                       <button id="INFORMACION" type="button" class="btn btn-primary inf" data-toggle="modal" data-target="#exampleModalButton">
+             	 <span class="fa fa-info-circle"></span> Info
 </button>
 <!-- Modal -->
 <div class="modal fade" id="exampleModalButton" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Modal Titel</h5>
+        <h5 class="modal-title" id="exampleModalLongTitle">Red neuronal vs Doc2Vec</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="false">×</span>
         </button>
       </div>
       <div class="modal-body">
-        <p>Das ist der Body von diesem <b>Modal</b></p><p>
-      </p></div>
+        <p><b>Red Neuronal</b></p><p>
+      </p>
+      <p><b>Doc2Vec</b></p><p>
+      </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Schließen</button>
         <!-- <button type="button" class="btn btn-primary">Button</button> -->
@@ -98,6 +104,9 @@
     </div>
   </div>
 </div>
+                </div>
+                <div class="col-3">
+
                 </div>
 
             </div>
@@ -177,8 +186,15 @@
                         $( "li" ).css( "background", "rgba(167,213,255, 0.05)" );
                         $(".list-group-item").css("border","none");
                         $(".list-group-item").css("border-radius","20px");
-                        $(".badge-secondary").css("background-color","#33867E")
-                        $(".form-control").css("box-shadow","0 0 0 .2rem rgba(0,107,99,.25)")
+                        $(".badge-secondary").css("background-color","#33867E");
+                        $(".form-control").css("box-shadow","0 0 0 .2rem rgba(0,107,99,.25)");
+                        $("#INFORMACION").css("background-color","#FFFF");
+                        $("#INFORMACION").css("border-color","#FFF");
+                        $("#INFORMACION").css("border-radius","18px");
+                        $("#INFORMACION").css("color","#41857c");
+                        $("a").css("color","#41857c")
+                        $(".btn-default").css("color","#41857c")
+                        $(".btn-default").css("border-radius","20px")
      </script>
 
     <footer class="footer">

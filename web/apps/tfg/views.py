@@ -1,13 +1,13 @@
 from django.shortcuts import render, redirect, reverse
 from .forms import NewsForm
 from .models import  News
-import sys
-import keras
+# import sys
+# import keras
 import numpy
 from bs4 import BeautifulSoup
-from numpy.distutils.system_info import numpy_info
+# from numpy.distutils.system_info import numpy_info
 from selenium import webdriver
-from django.http import HttpResponseRedirect
+# from django.http import HttpResponseRedirect
 
 # Create your views here.
 def Home(request):
@@ -56,13 +56,23 @@ def ListarNoticias(request):
         if news_form.is_valid():
             # news_form.save()
             news = news_form.save(commit = False)
-            news.url = request.url
-            news.esFi = neural_comprobation(bajar_noticia(news.url))
-            # url = news_form.fields['url']
+            # news.url = request.url
+            url = news_form.cleaned_data.get('url')
+            print("####################################################" + url)
+            bajar_noticia(url)
+            # news.esFi = neural_comprobation(bajar_noticia(url))
+
             # esFi = news_form.fields['esFi']
             # news_form.esFi =
             news.save()
-            return redirect('/news/listar_noticias/')
+            # return redirect('/news/listar_noticias/')
+            return render(request, 'tfg/listar_noticias.html',
+                          {
+                              'news': noticias,
+                              'buenas': noticiasBuenas,
+                              'malas': noticiasMalas,
+                              'news_form': news_form
+                          })
 
     return render(request, 'tfg/listar_noticias.html',
                   {
@@ -72,26 +82,17 @@ def ListarNoticias(request):
                       'news_form': news_form
                   })
 
-
-# def BuscarNoticia(request):
-    # if request.method == "POST":
-    #     news_form = NewsForm(request.POST)
-    #     if news_form.is_valid():
-    #         news_form.save()
-    #         return redirect('/news/listar_noticias/')
-    # return render(request, 'tfg/listar_noticias.html', {'news_form': news_form})
-
-# return HttpResponseRedirect(request.path_info)
-    # else:
-    #     news_form = NewsForm()
-    # return render(request, 'tfg/listar_noticias.html', {'news_form': news_form})
-
-
 def bajar_noticia(url):
     options = webdriver.ChromeOptions()
-    # options.binary_location("C:/Users/loloa/PycharmProjects/TFG-Django/web/apps/tfg/chromedriver.exe")
+    # chrome_path = r"web/apps/tfg/chromedriver.exe"
+    chrome_path = "C:/Users/USUARIO/PycharmProjects/TFG-Django/web/apps/tfg/chromedriver.exe"
+    # chrome_path, chrome_options=options
     options.add_argument('headless')
-    driver = webdriver.Chrome(executable_path='web/apps/tfg/chromedriver.exe', chrome_options=options)
+    options.binary_location = "C:/Program Files (x86)/Google/Chrome/Application/chrome.exe"
+    # options.add_argument("--no-sandbox")
+    driver = webdriver.Chrome(chrome_path, chrome_options=options)
+    # driver.implicitly_wait(10)
+    driver.get(url)
     nImagenes = 0
     nEnlaces = 0
     esFi = True
