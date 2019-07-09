@@ -84,7 +84,7 @@ DATABASES = {
         'PORT': '3306',
         'NAME': 'tfg_web',
         'USER': 'root',
-        'PASSWORD': 'admin'
+        'PASSWORD': 'admin',
     }
 }
 
