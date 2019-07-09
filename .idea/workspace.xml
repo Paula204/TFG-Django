@@ -1,16 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b1883487-7bc3-43fe-923c-9de5ba72e8c0" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/web/apps/tfg/neural_network_news.model" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/TFG-Django.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/TFG-Django.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/apps/tfg/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/web/apps/tfg/forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/apps/tfg/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/web/apps/tfg/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/apps/tfg/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/web/apps/tfg/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/apps/tfg/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/web/apps/tfg/views.py" afterDir="false" />
-    </list>
+    <list default="true" id="b1883487-7bc3-43fe-923c-9de5ba72e8c0" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
