@@ -1,13 +1,10 @@
 from django.shortcuts import render, redirect, reverse
 from .forms import NewsForm
 from .models import  News
-# import sys
-# import keras
+import keras
 import numpy
 from bs4 import BeautifulSoup
-# from numpy.distutils.system_info import numpy_info
 from selenium import webdriver
-# from django.http import HttpResponseRedirect
 
 # Create your views here.
 def Home(request):
@@ -54,18 +51,11 @@ def ListarNoticias(request):
     elif request.method == 'POST':
         news_form = NewsForm(request.POST)
         if news_form.is_valid():
-            # news_form.save()
             news = news_form.save(commit = False)
-            # news.url = request.url
             url = news_form.cleaned_data.get('url')
-            print("####################################################" + url)
             bajar_noticia(url)
-            # news.esFi = neural_comprobation(bajar_noticia(url))
-
-            # esFi = news_form.fields['esFi']
-            # news_form.esFi =
+            news.esFi = neural_comprobation(bajar_noticia(url)[0], bajar_noticia(url)[1])
             news.save()
-            # return redirect('/news/listar_noticias/')
             return render(request, 'tfg/listar_noticias.html',
                           {
                               'news': noticias,
@@ -84,14 +74,10 @@ def ListarNoticias(request):
 
 def bajar_noticia(url):
     options = webdriver.ChromeOptions()
-    # chrome_path = r"web/apps/tfg/chromedriver.exe"
-    chrome_path = "C:/Users/USUARIO/PycharmProjects/TFG-Django/web/apps/tfg/chromedriver.exe"
-    # chrome_path, chrome_options=options
+    chrome_path = "web/apps/tfg/chromedriver.exe"
     options.add_argument('headless')
     options.binary_location = "C:/Program Files (x86)/Google/Chrome/Application/chrome.exe"
-    # options.add_argument("--no-sandbox")
     driver = webdriver.Chrome(chrome_path, chrome_options=options)
-    # driver.implicitly_wait(10)
     driver.get(url)
     nImagenes = 0
     nEnlaces = 0
@@ -148,15 +134,16 @@ def bajar_noticia(url):
     else:
         esFi = True
 
+    comprobacion = [nImagenes, nEnlaces]
     print("Número de imágenes: " + str(nImagenes))
     print("Número de enlaces: " + str(nEnlaces))
 
-    return nImagenes, nEnlaces
+    return comprobacion
 
 
 def neural_comprobation(nImagenes, nEnlaces):
     x = numpy.array([[nImagenes, nEnlaces]])
-    model = keras.models.load_model('neural_network_news.model')
+    model = keras.models.load_model('web/apps/tfg/neural_network_news.model')
     prediction = model.predict(x)
     y = model.predict_classes(x)
     print("X=%s, Predicted=%s" % ([x][0], y[0]))
