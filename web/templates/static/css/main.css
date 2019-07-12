@@ -92,10 +92,6 @@ body, html {
   overflow-y: auto;
 }
 
-.inf{
-    width: 20%;
-}
-
 .myImg{
     background: url("info.png");
 }

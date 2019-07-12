@@ -16,7 +16,6 @@ Including another URLconf
 from django.contrib import admin
 from web.apps.tfg.views import Home
 from django.urls import path, include
-from web.apps.tfg.views import CrearPeticion
 
 urlpatterns = [
     path('admin/', admin.site.urls),

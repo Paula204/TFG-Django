@@ -14,28 +14,10 @@ from scipy import spatial
 def Home(request):
     return render(request, 'index.html')
 
-
-def CrearPeticion(request):
-    print("Estoy aquí 1")
-    print("#######")
-    print (request.method)
-    if request.method == "POST":
-        news_form = NewsForm(request.POST)
-        if news_form.is_valid():
-            print("ENTROOOOOOOOOOOO")
-            news_form.save()
-            print("VUELVO A ENTRAAAAAAAAR")
-            return redirect('index')
-    else:
-        print("Ahora en el 3")
-        news_form = NewsForm()
-    return render(request, 'tfg/crear_peticion.html',{'news_form':news_form})
-
-
 def ListarNoticias(request):
     noticiasMalas = []
     noticiasBuenas = []
-    noticias = News.objects.all()
+    noticias = News.objects.order_by('-fechaEntrada')
     news_form = NewsForm()
     if request.method == 'GET':
         i = 0;
@@ -59,7 +41,9 @@ def ListarNoticias(request):
             url = news_form.cleaned_data.get('url')
             bajar_noticia(url)
             # news.esFi = neural_comprobation(bajar_noticia(url)[0], bajar_noticia(url)[1])
-            news.esFi = doc2vec_comprobation(bajar_noticia(url)[2], bajar_noticia(url)[3])
+            # news.esFi = doc2vec_comprobation(bajar_noticia(url)[2], bajar_noticia(url)[3])
+            alg = news_form.cleaned_data.get('alg')
+            print("#######################   " + str(alg))
             news.save()
             return render(request, 'tfg/listar_noticias.html',
                           {
@@ -79,18 +63,13 @@ def ListarNoticias(request):
 
 def bajar_noticia(url):
     options = webdriver.ChromeOptions()
-    # chrome_path = r"web/apps/tfg/chromedriver.exe"
     chrome_path = "C:/Users/USUARIO/PycharmProjects/TFG-Django/web/apps/tfg/chromedriver.exe"
-    # chrome_path, chrome_options=options
     options.add_argument('headless')
     options.binary_location = "C:/Program Files (x86)/Google/Chrome/Application/chrome.exe"
-    # options.add_argument("--no-sandbox")
     driver = webdriver.Chrome(chrome_path, chrome_options=options)
-    # driver.implicitly_wait(10)
     driver.get(url)
     nImagenes = 0
     nEnlaces = 0
-    esFi = True
 
     driver.get(url)
 
@@ -138,11 +117,6 @@ def bajar_noticia(url):
         else:
             nEnlaces = nEnlaces + 1
 
-    if nImagenes > 10 or nEnlaces > 50:
-        esFi = False
-    else:
-        esFi = True
-
     print("Número de imágenes: " + str(nImagenes))
     print("Número de enlaces: " + str(nEnlaces))
 
@@ -169,14 +143,14 @@ def doc2vec_comprobation(cuerpo1, cuerpo2):
     test_data1 = word_tokenize(news1.lower())
     data_vector1 = []
 
-    news2 = cuerpo2
-    test_data2 = word_tokenize(news2.lower())
-    data_vector2 = []
-
     for w in test_data1:
         if w not in set(stopwords.words('spanish')):
             data_vector1.append(w)
     v1 = model.infer_vector(data_vector1)
+
+    news2 = cuerpo2
+    test_data2 = word_tokenize(news2.lower())
+    data_vector2 = []
 
     for w in test_data2:
         if w not in set(stopwords.words('spanish')):
@@ -186,4 +160,37 @@ def doc2vec_comprobation(cuerpo1, cuerpo2):
     similarity = spatial.distance.cosine(v1, v2)
     print("La distancia entre ambos textos es: " + str(similarity))
     esFi = True if similarity <= 0.3 else False
+    return similarity
+
+def comprobation_diferences(noticia):
+    noticiasBuenas = News.objects.filter(esFi = True).order_by('-fechaEntrada')
+    noticiasMalas = News.objects.filter(esFi = False).order_by('-fechaEntrada')
+    noticiasBuenasAux = []
+    noticiasMalasAux = []
+    i = 0
+    b = 0
+    m = 0
+    while i < 10:
+        for j in range(len(noticiasBuenas)):
+            if noticiasBuenas[j] in noticiasBuenasAux:
+                pass
+            else:
+                d1 = doc2vec_comprobation(bajar_noticia(noticia.url)[3],bajar_noticia(noticiasBuenas[j].url)[3])
+                noticiasBuenasAux.append(noticiasBuenas[j])
+                break
+        for j in range(len(noticiasMalas)):
+            if noticiasMalas[j] in noticiasMalasAux:
+                pass
+            else:
+                d2 = doc2vec_comprobation(bajar_noticia(noticia.url)[3],bajar_noticia(noticiasMalas[j].url)[3])
+                noticiasBuenasAux.append(noticiasMalas[j])
+                break
+        if d1 > d2:
+            b += 1
+        else:
+            m += 1
+        i += 1
+
+    esFi = True if b > m else False
+
     return esFi

@@ -41,79 +41,32 @@
         <div class="col-2"></div>
         <div class="col-8">
             <div class="row">
-              <form id="BUSCADOR" class="col " action="/news/listar_noticias/" method="POST">
+              <form id="BUSCADOR_RN" class="col " method="POST">
                   <div class="row">
                       <div class="col-10">
                   {% csrf_token %}
                       {{ news_form.as_p }}
-                          </div>
-                      <div class="col-2">
-                <button type="submit" class="btn btn-default">
-                   <span class="fa fa-search"></span> Buscar
-                </button>
                       </div>
+                      <div class="col-2">
+                            <button type="submit" class="btn btn-default">
+                                <span class="fa fa-search"></span> Buscar
+                            </button>
+                      </div>
+
                 </div>
               </form>
-
             </div>
+        </div>
+        <div class="col-2">
         </div>
         </div>
     <script>
         $("#BUSCADOR").find("label").hide();
     </script>
-        <div class="col-2"></div>
-    </div>
 
-    <div class="row" id="CHOOSE_OPTION">
-        <div class="col-2"></div>
-        <div class="col-8">
-            <div class="row">
-                <div class="col-3"></div>
-                <div class="col-6">
-                    <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1" checked>
-                    <label class="form-check-label" for="inlineRadio1">Red neuronal</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-                    <label class="form-check-label" for="inlineRadio2">Doc2Vec</label>
-                    </div>
-
-                       <button id="INFORMACION" type="button" class="btn btn-primary inf" data-toggle="modal" data-target="#exampleModalButton">
-             	 <span class="fa fa-info-circle"></span> Info
-</button>
-<!-- Modal -->
-<div class="modal fade" id="exampleModalButton" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Red neuronal vs Doc2Vec</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="false">×</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <p><b>Red Neuronal</b></p><p>
-      </p>
-      <p><b>Doc2Vec</b></p><p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Schließen</button>
-        <!-- <button type="button" class="btn btn-primary">Button</button> -->
-      </div>
-    </div>
-  </div>
-</div>
-                </div>
-                <div class="col-3">
-
-                </div>
-
-            </div>
-        </div>
-        <div class="col-2"></div>
 
     </div>
+
   <div class="row" style="height:15px"></div>
     <div class="row">
         <div class="col-2" ></div>
@@ -188,13 +141,25 @@
                         $(".list-group-item").css("border-radius","20px");
                         $(".badge-secondary").css("background-color","#33867E");
                         $(".form-control").css("box-shadow","0 0 0 .2rem rgba(0,107,99,.25)");
-                        $("#INFORMACION").css("background-color","#FFFF");
-                        $("#INFORMACION").css("border-color","#FFF");
-                        $("#INFORMACION").css("border-radius","18px");
-                        $("#INFORMACION").css("color","#41857c");
+                        $("#BUSCADOR_RN").find("label").remove()
                         $("a").css("color","#41857c")
                         $(".btn-default").css("color","#41857c")
                         $(".btn-default").css("border-radius","20px")
+                        $("#BUSCADOR_RN").find("#id_url").css("border-radius","12px")
+                        $("#BUSCADOR_RN").find("#id_Algoritmo_1").addClass("form-check-input")
+                        $("#BUSCADOR_RN").find("#id_Algoritmo_0").addClass("form-check-input")
+                        $("#BUSCADOR_RN").find("#id_Algoritmo").addClass("form-check-inline")
+                        $("#BUSCADOR_RN").find("#id_Algoritmo").css("border-radius","12px")
+                        $("#BUSCADOR_RN").find("#id_Algoritmo").css("width","27%")
+                        $("#BUSCADOR_RN").find("#id_Algoritmo").css("color","#41875c")
+                        $("#BUSCADOR_RN").find("#id_Algoritmo").css("height","30px")
+                        $("#id_Algoritmo").after('<button id="INFORMACION" type="button" class="btn btn-primary inf" data-toggle="modal" data-target="#exampleModalButton"><span class="fa fa-info-circle"></span></button>')
+                        $("#id_Algoritmo").before('<div class="row" style="height:4px"></div>')
+                        $("#INFORMACION").css("background-color","#FFFF");
+                        $("#INFORMACION").css("border-color","#FFF");
+                        $("#INFORMACION").css("border-radius","18px");
+                        $("#INFORMACION").css("width","6%");
+                        $("#INFORMACION").css("color","#41857c");
      </script>
 
     <footer class="footer">
@@ -219,5 +184,26 @@
 <!-- Footer -->
 
 </body>
-
+<!-- Modal -->
+<div class="modal fade" id="exampleModalButton" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Red neuronal vs Doc2Vec</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="false">×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p><b>Red Neuronal</b></p><p>
+      </p>
+      <p><b>Doc2Vec</b></p><p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Schließen</button>
+        <!-- <button type="button" class="btn btn-primary">Button</button> -->
+      </div>
+    </div>
+  </div>
+</div>
 </html>

@@ -7,6 +7,8 @@ class News(models.Model):
     fechaEntrada = models.DateField('Fecha de creación', auto_now=True, auto_now_add=False)
     url = models.URLField(blank=False, null=False)
     esFi = models.BooleanField(null=False, default=False)
+    algoritmo = models.BooleanField(null=False, default=True, choices=((True, 'Red neuronal'),(False, 'Doc2Vec + Red Neuronal')))
+    vector = models.DecimalField(null=False, decimal_places=10, max_digits=10, default=0)
 
     class Meta:
         verbose_name = 'News'
